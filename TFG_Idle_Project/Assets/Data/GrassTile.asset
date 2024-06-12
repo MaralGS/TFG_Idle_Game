@@ -15,3 +15,4 @@ MonoBehaviour:
   tiles:
   - {fileID: 11400000, guid: dfd3340be87778843a3b8d8fdf37236c, type: 2}
   - {fileID: 11400000, guid: a352b470846904d4d949fe27164b9383, type: 2}
+  tileTag: Grass

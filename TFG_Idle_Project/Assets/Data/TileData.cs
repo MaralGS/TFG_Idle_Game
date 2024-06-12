@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -9,11 +10,6 @@ public class TileData : ScriptableObject
 {
     public TileBase[] tiles;
 
-    public enum tileType
-    {
-        Grass,
-        Dirt,
-        PlantedGrass
-    }
+    public string tileTag;
 }
 

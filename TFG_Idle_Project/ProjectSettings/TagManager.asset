@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Clickable
   - Non_Clickable
+  - Plantation
+  - Plantation_Clickable
+  - Sunflower
+  - Field
+  - SunflowerField
   layers:
   - Default
   - TransparentFX

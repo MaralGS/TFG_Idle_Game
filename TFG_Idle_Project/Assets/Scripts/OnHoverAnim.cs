@@ -1,66 +1,103 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.U2D;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class OnHoverAnim : MonoBehaviour
 {
-    private Grid grid;
-    [SerializeField] private Tilemap interactiveMap = null;
-    [SerializeField] private Tilemap pathMap = null;
-    [SerializeField] private Tile hoverTile = null;
-    [SerializeField] private Tile putTile = null;
-    //SerializeField] private RuleTile pathTile = null;
     public Tile[] plantTile;
     private int spriteIndex = 0;
-
-
-    private Vector3Int previousMousePos = new Vector3Int();
+    private bool canPlace = false;
+    [SerializeField] private Tilemap InteractiveMap;
+    [SerializeField] private Tile MarkedTile;
+    [SerializeField] private Tile RemovedTile;
+    [SerializeField] private GameObject fieldPrefab;
+    private List<GameObject> fieldList;
+    public Sprite[] extraSprites;
 
     // Start is called before the first frame update
     void Start()
     {
-        grid = gameObject.GetComponent<Grid>();
+        fieldList = new List<GameObject>();
+        RecorrerTilemap();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Mouse over -> highlight tile
-        Vector3Int mousePos = GetMousePos();
-        if (!mousePos.Equals(previousMousePos))
-        {
-            
-            interactiveMap.SetTile(previousMousePos, null); // Remove old hoverTile
-            interactiveMap.SetTile(mousePos, hoverTile);
-            previousMousePos = mousePos;
-        }
-
-        // Left mouse click -> add path tile
-        if (Input.GetMouseButton(0))
-        {
-            pathMap.SetTile(mousePos, plantTile[spriteIndex]);
-        }
-
-        // Right mouse click -> remove path tile
-        if (Input.GetMouseButton(1))
-        {
-            pathMap.SetTile(mousePos, null);
-        }
+ 
     }
 
-    Vector3Int GetMousePos()
-    {
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        return grid.WorldToCell(mouseWorldPos);
-    }
 
     public void SetPutTileTexture(int SpriteID)
     {
         spriteIndex = SpriteID;
     }
+
+    public void RecorrerTilemap()
+    {
+        // Obtenemos los límites del tilemap
+        BoundsInt bounds = InteractiveMap.cellBounds;
+
+        // Recorremos cada posición dentro de los límites del tilemap
+        for (int x = bounds.xMin; x < bounds.xMax; x++)
+        {
+            for (int y = bounds.yMin; y < bounds.yMax; y++)
+            {
+                for (int z = bounds.zMin; z < bounds.zMax; z++)
+                {
+                    Vector3Int pos = new Vector3Int(x, y, z);
+
+                    // Aquí puedes hacer lo que necesites con cada posición del tilemap
+                    TileBase tile = InteractiveMap.GetTile(pos);
+                    if (tile != null)
+                    {
+                        pos *= 105;
+                        pos.x += 50;
+                        pos.y += 55;
+                        GameObject fieldButton = Instantiate(fieldPrefab,(pos),Quaternion.identity) as GameObject;
+                        fieldButton.transform.SetParent(GameObject.Find("Canvas").transform, false);
+                        fieldList.Add(fieldButton);
+                    }
+                }
+            }
+        }
+    }
+
+    public void ChangeTexture(bool isPlantationMode = false)
+    {
+        Dictionary<string, (Sprite, string)> defaultTagSpriteMap = new Dictionary<string, (Sprite, string)>
+        {
+            { "Non_Clickable", (extraSprites[0], "Clickable") },
+            { "Clickable", (extraSprites[1], "Non_Clickable") },
+            { "Plantation_Clickable", (extraSprites[3], "Plantation") }
+        };
+
+        Dictionary<string, (Sprite, string)> plantationTagSpriteMap = new Dictionary<string, (Sprite, string)>
+        {
+            { "Plantation", (extraSprites[2], "Plantation_Clickable") },
+            { "Clickable", (extraSprites[1], "Non_Clickable") },
+            { "Plantation_Clickable", (extraSprites[3], "Plantation") }
+        };
+
+        var tagSpriteMap = isPlantationMode ? plantationTagSpriteMap : defaultTagSpriteMap;
+
+        for (int i = 0; i < fieldList.Count; i++)
+        {
+            string currentTag = fieldList[i].tag;
+            if (tagSpriteMap.ContainsKey(currentTag))
+            {
+                var (sprite, newTag) = tagSpriteMap[currentTag];
+                fieldList[i].GetComponent<Image>().sprite = sprite;
+                fieldList[i].tag = newTag;
+            }
+        }
+    }
+
 }
+
 
