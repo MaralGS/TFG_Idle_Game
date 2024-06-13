@@ -17,7 +17,15 @@ public class OnHoverAnim : MonoBehaviour
     [SerializeField] private Tile RemovedTile;
     [SerializeField] private GameObject fieldPrefab;
     private List<GameObject> fieldList;
+    public GameObject[] UIPlant;
     public Sprite[] extraSprites;
+
+    public static class GlobalGrowthFactors
+    {
+        public static double FieldGrowthFactor = 1.0f;
+        public static double SunflowerGrowthFactor = 1.0f;
+        public const double GrowthRate = 1.5f; 
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -98,6 +106,27 @@ public class OnHoverAnim : MonoBehaviour
         }
     }
 
+    public void IncrementValue(string fieldName)
+    {
+        switch (fieldName)
+        {
+            case "Plantation":
+                GlobalGrowthFactors.FieldGrowthFactor *= GlobalGrowthFactors.GrowthRate;
+                GlobalGrowthFactors.FieldGrowthFactor = Mathf.Round((float)GlobalGrowthFactors.FieldGrowthFactor);
+                Debug.Log($"Field Growth Factor: {GlobalGrowthFactors.FieldGrowthFactor}");
+                UIPlant[0].GetComponentInChildren<Text>().text = GlobalGrowthFactors.FieldGrowthFactor.ToString();
+                break;
+            case "Sunflower":
+                GlobalGrowthFactors.SunflowerGrowthFactor *= GlobalGrowthFactors.GrowthRate;
+                GlobalGrowthFactors.SunflowerGrowthFactor = Mathf.Round((float)GlobalGrowthFactors.SunflowerGrowthFactor);
+                Debug.Log($"Field Growth Factor: {GlobalGrowthFactors.SunflowerGrowthFactor}");
+                UIPlant[1].GetComponentInChildren<Text>().text = GlobalGrowthFactors.SunflowerGrowthFactor.ToString();
+                break;
+            default:
+                Debug.Log("Cagada Historica");
+                break;
+        }
+    }
 }
 
 

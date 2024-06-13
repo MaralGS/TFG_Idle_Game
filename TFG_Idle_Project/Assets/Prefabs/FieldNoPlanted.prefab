@@ -287,3 +287,6 @@ MonoBehaviour:
   fieldSprites:
   - {fileID: 21300000, guid: 5bf7440e004679c4ea7607de26595f16, type: 3}
   - {fileID: 21300000, guid: f8935fa03edcf6f4e9c839382f6ae7ed, type: 3}
+  sunflowerSprites:
+  - {fileID: 21300000, guid: 08992947de1e90141a1c41cdab399a59, type: 3}
+  - {fileID: 21300000, guid: e82f1c641280e784cbcbd9e13bde7c9b, type: 3}
