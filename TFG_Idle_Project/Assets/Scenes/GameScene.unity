@@ -194,7 +194,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10
+  m_Text: 200
 --- !u!222 &38674720
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1848,7 +1848,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.48584908, g: 0.70387644, b: 1, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -2079,7 +2079,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 5
+  m_Text: 15000
 --- !u!222 &842452198
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2536,10 +2536,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.48584908, g: 0.70387644, b: 1, a: 1}
-    m_PressedColor: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0.81072843, g: 1, b: 0.514151, a: 1}
+    m_HighlightedColor: {r: 0.6901961, g: 0.9725491, b: 0.454902, a: 1}
+    m_PressedColor: {r: 0.30978605, g: 0.8396226, b: 0.16237983, a: 1}
+    m_SelectedColor: {r: 0.46312338, g: 0.6792453, b: 0.21466713, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2580,7 +2580,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: SunflowerField
+          m_StringArgument: CornField
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1378123266
@@ -3002,7 +3002,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.48584908, g: 0.70387644, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.6768423, g: 0.7491459, b: 0.8490566, a: 1}
     m_PressedColor: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -3615,11 +3615,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1844515354}
   m_CullTransparentMesh: 1
---- !u!1 &1895438010 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 793470105750508854, guid: c080c762530bd2d49aaadcbc88294688, type: 3}
-  m_PrefabInstance: {fileID: 8755293560307025657}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1979075997
 GameObject:
   m_ObjectHideFlags: 0
@@ -5981,7 +5976,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2964345077650493291, guid: c080c762530bd2d49aaadcbc88294688, type: 3}
   m_PrefabInstance: {fileID: 8755293560307025657}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1895438010}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4202682ea1b11a54b8b03880cf945810, type: 3}
@@ -5992,25 +5987,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8958485153750481261, guid: c080c762530bd2d49aaadcbc88294688, type: 3}
   m_PrefabInstance: {fileID: 8755293560307025657}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1895438010}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03274556398355147ba1d4bfc99c1a7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2084020264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1895438010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 666bc91e48f6fe243b31436c545d99f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  beePrefab: {fileID: 5177519434062104304, guid: 5ac9f5fd69038fe489aab944eb88ea51, type: 3}
 --- !u!1001 &8755293560307025657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6036,17 +6018,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2054838686}
     - target: {fileID: 2964345077650493291, guid: c080c762530bd2d49aaadcbc88294688, type: 3}
-      propertyPath: UIPlant.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2964345077650493291, guid: c080c762530bd2d49aaadcbc88294688, type: 3}
       propertyPath: UIPlant.Array.data[0]
       value: 
       objectReference: {fileID: 1808786867}
-    - target: {fileID: 2964345077650493291, guid: c080c762530bd2d49aaadcbc88294688, type: 3}
-      propertyPath: UIPlant.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3094730057868290422, guid: c080c762530bd2d49aaadcbc88294688, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -6094,8 +6068,5 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 793470105750508854, guid: c080c762530bd2d49aaadcbc88294688, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2084020264}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c080c762530bd2d49aaadcbc88294688, type: 3}

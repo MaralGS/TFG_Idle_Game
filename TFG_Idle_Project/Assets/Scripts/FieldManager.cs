@@ -19,6 +19,9 @@ public class FieldManager : MonoBehaviour
     [SerializeField]
     private Sprite[] riceSprites;
 
+    [SerializeField]
+    private Sprite[] cornSprites;
+
     bool canCollect = false;
 
     private static readonly string ClickableTag = "Clickable";
@@ -36,7 +39,8 @@ public class FieldManager : MonoBehaviour
         {
             { "Field", (fieldSprites[0], "Plantation") },
             { "SunflowerField", (fieldSprites[1], "Sunflower") },
-            { "RiceField", (fieldSprites[2], "Rice") }
+            { "RiceField", (fieldSprites[2], "Rice") },
+            { "CornField", (fieldSprites[3], "Corn") }
         };
     }
     private void Update()
@@ -85,7 +89,11 @@ public class FieldManager : MonoBehaviour
         }
         else if (gameObject.tag == "Rice")
         {
-            OnHoverAnim.GlobalGrowthFactors.Money += 50f;
+            OnHoverAnim.GlobalGrowthFactors.Money += 500f;
+        }
+        else if (gameObject.tag == "Corn")
+        {
+            OnHoverAnim.GlobalGrowthFactors.Money += 50000f;
         }
     }
 
@@ -95,8 +103,9 @@ public class FieldManager : MonoBehaviour
         var image = gameObject.GetComponent<Image>();
         var plantGrowthTimes = new Dictionary<string, (float growth, float finish, Sprite[] sprites)>
     {
-        { "Sunflower", (10f, 5f, sunflowerSprites) },
-        { "Rice", (10f, 5f, riceSprites) }
+        { "Sunflower", (5f, 5f, sunflowerSprites) },
+        { "Rice", (20f, 20f, riceSprites) },
+        { "Corn", (60f, 60f, cornSprites) }
     };
 
         if (plantGrowthTimes.TryGetValue(gameObject.tag, out var plantInfo))
@@ -123,7 +132,9 @@ public class FieldManager : MonoBehaviour
                 requiredCost = OnHoverAnim.GlobalGrowthFactors.SunFlowerCost;
                 else if(createPlant.fieldName == "RiceField")
                 requiredCost = OnHoverAnim.GlobalGrowthFactors.RiceFlowerCost;
-            break;
+                else if (createPlant.fieldName == "CornField")
+                requiredCost = OnHoverAnim.GlobalGrowthFactors.CornFlowerCost;
+                break;
         default:
             return false;
     }

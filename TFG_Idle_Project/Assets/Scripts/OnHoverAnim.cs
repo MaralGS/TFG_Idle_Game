@@ -31,7 +31,8 @@ public class OnHoverAnim : MonoBehaviour
         public static double Money = 5f;
         public static double TerrainCost = 5f;
         public static double SunFlowerCost = 5f;
-        public static double RiceFlowerCost = 10f;
+        public static double RiceFlowerCost = 200f;
+        public static double CornFlowerCost = 15000f;
     }
 
     // Start is called before the first frame update

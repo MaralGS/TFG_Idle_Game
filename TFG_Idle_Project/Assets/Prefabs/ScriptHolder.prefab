@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3094730057868290422}
   - component: {fileID: 2964345077650493291}
   - component: {fileID: 8958485153750481261}
+  - component: {fileID: 8205862060983530243}
   m_Layer: 0
   m_Name: ScriptHolder
   m_TagString: Untagged
@@ -49,15 +50,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 468fb42a755d53a43825297d59ef820c, type: 2}
   - {fileID: 11400000, guid: d92ca8ba9c5af0d4bb5fe95e4abec72c, type: 2}
   - {fileID: 11400000, guid: c2805211a6f8a6d4ea5838d6153aae17, type: 2}
+  - {fileID: 11400000, guid: 82c6a3fb185d33748bfcd0a8959f120c, type: 2}
   InteractiveMap: {fileID: 0}
   MarkedTile: {fileID: 11400000, guid: dd5a9fefe0b37d249bb21640c987e910, type: 2}
   RemovedTile: {fileID: 11400000, guid: ed1f84bd5b3ec6245a7e5bed86b83a5c, type: 2}
   fieldPrefab: {fileID: 8558630714444587615, guid: b835de2104060ef4f8d568c825a6b143, type: 3}
+  UIPlant:
+  - {fileID: 0}
+  - {fileID: 0}
   extraSprites:
   - {fileID: 21300000, guid: 71892a49fdd22cf43a751d0ea8ad2538, type: 3}
   - {fileID: 21300000, guid: 087835608ae4fad4981d5f72565d8b27, type: 3}
   - {fileID: 21300000, guid: 392075d82b42ff44fac980d34f09c46b, type: 3}
   - {fileID: 21300000, guid: 5bf7440e004679c4ea7607de26595f16, type: 3}
+  money: {fileID: 0}
+  terrainCost: {fileID: 0}
 --- !u!114 &8958485153750481261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,3 +78,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fieldName: 
+--- !u!114 &8205862060983530243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793470105750508854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 666bc91e48f6fe243b31436c545d99f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beePrefab: {fileID: 5177519434062104304, guid: 5ac9f5fd69038fe489aab944eb88ea51, type: 3}
