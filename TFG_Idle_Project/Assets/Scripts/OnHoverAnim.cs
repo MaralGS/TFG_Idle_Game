@@ -20,11 +20,18 @@ public class OnHoverAnim : MonoBehaviour
     public GameObject[] UIPlant;
     public Sprite[] extraSprites;
 
+    public Text money;
+    public Text terrainCost;
+
     public static class GlobalGrowthFactors
     {
         public static double FieldGrowthFactor = 1.0f;
         public static double SunflowerGrowthFactor = 1.0f;
-        public const double GrowthRate = 1.5f; 
+        public const double GrowthRate = 1.5f;
+        public static double Money = 5f;
+        public static double TerrainCost = 5f;
+        public static double SunFlowerCost = 5f;
+        public static double RiceFlowerCost = 10f;
     }
 
     // Start is called before the first frame update
@@ -37,7 +44,8 @@ public class OnHoverAnim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
- 
+        money.text = GlobalGrowthFactors.Money.ToString();
+        terrainCost.text = GlobalGrowthFactors.TerrainCost.ToString();
     }
 
 
@@ -111,19 +119,11 @@ public class OnHoverAnim : MonoBehaviour
         switch (fieldName)
         {
             case "Plantation":
-                GlobalGrowthFactors.FieldGrowthFactor *= GlobalGrowthFactors.GrowthRate;
-                GlobalGrowthFactors.FieldGrowthFactor = Mathf.Round((float)GlobalGrowthFactors.FieldGrowthFactor);
-                Debug.Log($"Field Growth Factor: {GlobalGrowthFactors.FieldGrowthFactor}");
-                UIPlant[0].GetComponentInChildren<Text>().text = GlobalGrowthFactors.FieldGrowthFactor.ToString();
-                break;
-            case "Sunflower":
-                GlobalGrowthFactors.SunflowerGrowthFactor *= GlobalGrowthFactors.GrowthRate;
-                GlobalGrowthFactors.SunflowerGrowthFactor = Mathf.Round((float)GlobalGrowthFactors.SunflowerGrowthFactor);
-                Debug.Log($"Field Growth Factor: {GlobalGrowthFactors.SunflowerGrowthFactor}");
-                UIPlant[1].GetComponentInChildren<Text>().text = GlobalGrowthFactors.SunflowerGrowthFactor.ToString();
+                GlobalGrowthFactors.TerrainCost *= GlobalGrowthFactors.GrowthRate;
+                GlobalGrowthFactors.TerrainCost = Mathf.Round((float)GlobalGrowthFactors.TerrainCost);
+                UIPlant[0].GetComponentInChildren<Text>().text = GlobalGrowthFactors.TerrainCost.ToString();
                 break;
             default:
-                Debug.Log("Cagada Historica");
                 break;
         }
     }

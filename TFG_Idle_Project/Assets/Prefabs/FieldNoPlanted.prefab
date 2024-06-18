@@ -287,6 +287,10 @@ MonoBehaviour:
   fieldSprites:
   - {fileID: 21300000, guid: 5bf7440e004679c4ea7607de26595f16, type: 3}
   - {fileID: 21300000, guid: f8935fa03edcf6f4e9c839382f6ae7ed, type: 3}
+  - {fileID: 21300000, guid: 23192b2b2a45fc846906ee80daa17828, type: 3}
   sunflowerSprites:
-  - {fileID: 21300000, guid: 08992947de1e90141a1c41cdab399a59, type: 3}
-  - {fileID: 21300000, guid: e82f1c641280e784cbcbd9e13bde7c9b, type: 3}
+  - {fileID: 21300000, guid: 61ca4ff07e576494ebba8b762e8fbe83, type: 3}
+  - {fileID: 21300000, guid: 84dedef9e69bcee449ab1bad4995e69b, type: 3}
+  riceSprites:
+  - {fileID: 21300000, guid: caab47e43b4635746881f51a448e4147, type: 3}
+  - {fileID: 21300000, guid: b17c101f9c39e1645800facd1f923489, type: 3}

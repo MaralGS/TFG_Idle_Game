@@ -16,6 +16,9 @@ public class FieldManager : MonoBehaviour
     [SerializeField]
     private Sprite[] sunflowerSprites;
 
+    [SerializeField]
+    private Sprite[] riceSprites;
+
     bool canCollect = false;
 
     private static readonly string ClickableTag = "Clickable";
@@ -32,7 +35,8 @@ public class FieldManager : MonoBehaviour
         fieldMappings = new Dictionary<string, (Sprite, string)>
         {
             { "Field", (fieldSprites[0], "Plantation") },
-            { "SunflowerField", (fieldSprites[1], "Sunflower") }
+            { "SunflowerField", (fieldSprites[1], "Sunflower") },
+            { "RiceField", (fieldSprites[2], "Rice") }
         };
     }
     private void Update()
@@ -42,50 +46,96 @@ public class FieldManager : MonoBehaviour
 
     public void SetField()
     {
-        if (!canCollect)
+        if (canCollect)
         {
-            string fieldName = createPlant.fieldName;
-            if (gameObject.CompareTag(ClickableTag) || gameObject.CompareTag(PlantationClickableTag))
-            {
-                if (fieldMappings.TryGetValue(fieldName, out var fieldInfo))
-                {
-                    var image = gameObject.GetComponent<Image>();
-                    image.sprite = fieldInfo.sprite;
-                    gameObject.tag = fieldInfo.newTag;
-                    hoverAnim.IncrementValue(gameObject.tag);
-                    StartCoroutine(StartGrowth());
-                }
-            }
+            GetIncome();
+            ResetField();
+            return;
         }
-        else
+
+        if (!(gameObject.CompareTag(ClickableTag) || gameObject.CompareTag(PlantationClickableTag)))
+            return;
+
+        if (!CanBuy())
+            return;
+
+        if (fieldMappings.TryGetValue(createPlant.fieldName, out var fieldInfo))
         {
-            gameObject.GetComponent<Image>().sprite = fieldSprites[0];
-            gameObject.tag = "Plantation";
-            canCollect = false;
+            var image = gameObject.GetComponent<Image>();
+            image.sprite = fieldInfo.sprite;
+            gameObject.tag = fieldInfo.newTag;
+            hoverAnim.IncrementValue(gameObject.tag);
+            StartCoroutine(StartGrowth());
         }
     }
+
+    private void ResetField()
+    {
+        var image = gameObject.GetComponent<Image>();
+        image.sprite = fieldSprites[0];
+        gameObject.tag = "Plantation";
+        canCollect = false;
+    }
+
+    private void GetIncome()
+    {
+        if (gameObject.tag == "Sunflower")
+        {
+            OnHoverAnim.GlobalGrowthFactors.Money += 20f;
+        }
+        else if (gameObject.tag == "Rice")
+        {
+            OnHoverAnim.GlobalGrowthFactors.Money += 50f;
+        }
+    }
+
 
     IEnumerator StartGrowth()
     {
-        float plantGrowth;
-        float plantFinish;
-        var image = gameObject.GetComponent<Image>();  
-        switch (gameObject.tag)
+        var image = gameObject.GetComponent<Image>();
+        var plantGrowthTimes = new Dictionary<string, (float growth, float finish, Sprite[] sprites)>
+    {
+        { "Sunflower", (10f, 5f, sunflowerSprites) },
+        { "Rice", (10f, 5f, riceSprites) }
+    };
+
+        if (plantGrowthTimes.TryGetValue(gameObject.tag, out var plantInfo))
         {
-            case "Sunflower":
-                plantGrowth = 10f;
-                plantFinish = 5f;
-                yield return new WaitForSeconds(plantGrowth);
-                image.sprite = sunflowerSprites[0];
-                yield return new WaitForSeconds(plantFinish);
-                image.sprite = sunflowerSprites[1];
-                canCollect = true;
-                break;
-            default:
-                yield return null;
-                break;
+            yield return new WaitForSeconds(plantInfo.growth);
+            image.sprite = plantInfo.sprites[0];
+            yield return new WaitForSeconds(plantInfo.finish);
+            image.sprite = plantInfo.sprites[1];
+            canCollect = true;
         }
     }
 
+    private bool CanBuy()
+{
+    double requiredCost = 0f;
    
+    switch (gameObject.tag)
+    {
+        case "Clickable":
+            requiredCost = OnHoverAnim.GlobalGrowthFactors.TerrainCost;
+            break;
+        case "Plantation_Clickable":
+                if(createPlant.fieldName == "SunflowerField")
+                requiredCost = OnHoverAnim.GlobalGrowthFactors.SunFlowerCost;
+                else if(createPlant.fieldName == "RiceField")
+                requiredCost = OnHoverAnim.GlobalGrowthFactors.RiceFlowerCost;
+            break;
+        default:
+            return false;
+    }
+
+    if (OnHoverAnim.GlobalGrowthFactors.Money >= requiredCost)
+    {
+        OnHoverAnim.GlobalGrowthFactors.Money -= requiredCost;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
 }

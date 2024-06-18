@@ -11,6 +11,9 @@ TagManager:
   - Sunflower
   - Field
   - SunflowerField
+  - RiceField
+  - CornField
+  - Rice
   layers:
   - Default
   - TransparentFX
@@ -18,7 +21,7 @@ TagManager:
   - Tilemap
   - Water
   - UI
-  - 
+  - Bee
   - 
   - 
   - 
